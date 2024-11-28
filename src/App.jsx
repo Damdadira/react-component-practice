@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react'
 import Board from './components/Board';
 import Counter from './components/Counter'; //useState
 import Input from './components/Input'; //useRef
+import AutoCounter from './components/AutoCounter';
 
 function App() {
   /**
@@ -36,9 +37,12 @@ function App() {
     <div>
       <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '1rem'}}>
         <code style={{fontSize: '1.7rem', fontWeight: '800', color: 'orange'}}>useRef</code>
-        <div style={{display: 'flex', gap: '1rem'}}>
-          <Input ref={inputRef}></Input>
-          <button onClick={() => inputRef.current.focus()}>Focus</button>
+        <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+          <div style={{display: 'flex', gap: '1rem'}}>
+            <Input ref={inputRef}></Input>
+            <button onClick={() => inputRef.current.focus()}>Focus</button>
+          </div>
+          <AutoCounter></AutoCounter>
         </div>
       </div>
       <hr />
