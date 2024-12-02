@@ -3,7 +3,8 @@ import { useState, useEffect, useRef } from 'react'
 import Board from './components/Board';
 import Counter from './components/Counter'; //useState
 import Input from './components/Input'; //useRef
-import AutoCounter from './components/AutoCounter';
+import AutoCounter from './components/AutoCounter'; //useRef, useState
+import Pagination from './components/Pagination';
 
 function App() {
   /**
@@ -33,8 +34,27 @@ function App() {
    */
   const inputRef = useRef();
 
+  /**
+   * pagination
+   */
+  const [ page, setPage ] = useState(0);
+  const articles = new Array(100).fill().map((_, i) => ({ id: i, title: `${i}번 게시물` }))
+
+  const limit = 10;
+  const offset = page * limit;
+  
+
   return(
     <div>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '1rem'}}>
+        <code style={{fontSize: '1.7rem', fontWeight: '800', color: 'orange'}}>pagination</code>
+        <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
+          <Pagination defaultPage={0} limit={limit} total={articles.length} onChange={setPage}></Pagination>
+          <Board articles={articles.slice(offset, offset + limit)}></Board>
+        </div>
+      </div>
+      <hr />
+
       <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '1rem'}}>
         <code style={{fontSize: '1.7rem', fontWeight: '800', color: 'orange'}}>useRef</code>
         <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
