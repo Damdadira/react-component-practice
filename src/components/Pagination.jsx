@@ -9,8 +9,6 @@ export default function Pagination({ defaultPage, limit, total, onChange }){
     setPage(newPage);
   }
 
-  console.log(page)
-
   return(
     <div style={{ display: 'flex', gap: '.5rem' }}>
       <button onClick={() => page !== 0 && handleChangePage(page - 1)}>이전</button>

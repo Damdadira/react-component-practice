@@ -4,7 +4,8 @@ import Board from './components/Board';
 import Counter from './components/Counter'; //useState
 import Input from './components/Input'; //useRef
 import AutoCounter from './components/AutoCounter'; //useRef, useState
-import Pagination from './components/Pagination';
+import Pagination from './components/Pagination'; //useState
+import ShowSum from './components/ShowSum'; //useMemo
 
 function App() {
   /**
@@ -42,10 +43,26 @@ function App() {
 
   const limit = 10;
   const offset = page * limit;
+
+  /**
+   * useMemo
+   * 최적화를 위해 필요한 훅
+   * 최적화되지 않으면 끊임없이 리렌더링됨
+   */
+  const [ label, setLabel ] = useState('Result');
   
 
   return(
     <div>
+      <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '1rem'}}>
+        <code style={{fontSize: '1.7rem', fontWeight: '800', color: 'orange'}}>useMemo</code>
+        <div>
+          <button onClick={() => setLabel(label + ':')}>Change Label</button>
+          {/* <ShowSum label={label} n={10}></ShowSum> */}
+        </div>
+      </div>
+      <hr />
+
       <div style={{display: 'flex', flexDirection: 'column', gap: '1rem', margin: '1rem'}}>
         <code style={{fontSize: '1.7rem', fontWeight: '800', color: 'orange'}}>pagination</code>
         <div style={{display: 'flex', flexDirection: 'column', gap: '1rem'}}>
