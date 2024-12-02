@@ -4,12 +4,16 @@ const config = {
   addons: [
     "@storybook/addon-onboarding",
     "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
+    "@chromatic/com-storybook",
     "@storybook/addon-interactions",
   ],
   framework: {
     name: "@storybook/react-vite",
-    options: {},
+    options: {
+      builder: {
+        viteConfigPath: "vite.config.js",
+      },
+    },
   },
 };
 export default config;
